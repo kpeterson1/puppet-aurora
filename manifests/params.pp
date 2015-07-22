@@ -35,7 +35,7 @@ class aurora::params {
     thermos_executor           => '/usr/share/aurora/bin/thermos_executor.pex',
     gc_executor                => '/usr/share/aurora/bin/gc_executor.pex',
     thermos_executor_resources => '',
-    thermos_executor_flags     => [],
+    thermos_executor_flags     => ['--announcer-enable',' --announcer-ensemble="localhost:2181"',' --announcer-serverset-path="/aurora/scheduler/"'],
     allowed_container_types    => ['DOCKER','MESOS'],
     extra_scheduler_args       => [],
   }

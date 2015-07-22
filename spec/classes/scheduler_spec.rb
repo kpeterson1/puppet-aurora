@@ -29,11 +29,11 @@ describe 'aurora', type: :class do
             'allowed_container_types' => %w(DOCKER MESOS),
             'thermos_executor_flags' => [
               '--announcer-enable',
-              '--announcer-ensemble=localhost:2181',
-              '--announcer-serverset-path=/server',
+              '--announcer-ensemble="localhost:2181"',
+              '--announcer-serverset-path="/aurora/scheduler/"',
             ],
-            'extra_scheduler_args' => [],
-          },
+            'extra_scheduler_args' => []
+          }
         }
       end
 
@@ -74,12 +74,7 @@ describe 'aurora', type: :class do
 
       context 'scheduler params' do
         it do
-          executor_flags_match = %r{
-              THERMOS_EXECUTOR_FLAGS="
-              --announcer-enable\s
-              --announcer-ensemble=localhost:2181\s
-              --announcer-serverset-path=/server"
-          }x
+          executor_flags_match=%r{THERMOS_EXECUTOR_FLAGS=\"--announcer-enable,--announcer-ensemble=\"localhost:2181\",--announcer-serverset-path=\"/aurora/scheduler/\"}
           should contain_file('/etc/default/aurora-scheduler')
             .with_content(/GLOG_v=0/)
             .with_content(/LIBPROCESS_PORT=8083/)
