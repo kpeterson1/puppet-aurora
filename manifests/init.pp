@@ -65,7 +65,7 @@ class aurora (
       validate_absolute_path($scheduler_options['thermos_executor_resources'])
     }
     if $scheduler_options['thermos_executor_flags'] {
-      validate_array($scheduler_options['thermos_executor_flags'])
+      validate_string($scheduler_options['thermos_executor_flags'])
     }
     if $scheduler_options['allowed_container_types'] {
       validate_array($scheduler_options['allowed_container_types'])
